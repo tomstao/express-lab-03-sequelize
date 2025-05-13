@@ -87,15 +87,14 @@ Configure Environment (create **.env** file)
 
 ### Task 1: Understand the Model Relationships
 
-- Implement these associations:
-  ```js
-  // Customer-Order (1:Many)
-  Customer.hasMany(Order);
-  Order.belongsTo(Customer);
-  // Order-Product (Many:Many)
-  Order.belongsToMany(Product, { through: "OrderProducts" });
-  Product.belongsToMany(Order, { through: "OrderProducts" });
-  ```
+```js
+// Customer-Order (1:Many)
+Customer.hasMany(Order);
+Order.belongsTo(Customer);
+// Order-Product (Many:Many)
+Order.belongsToMany(Product, { through: "OrderProducts" });
+Product.belongsToMany(Order, { through: "OrderProducts" });
+```
 
 ### Task 2: Order Routes
 
