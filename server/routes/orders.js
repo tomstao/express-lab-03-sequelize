@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const {Order, Product, Customer} = require("../db");
+const {route} = require("express/lib/application");
 
 /* =========================================================================
    GET /api/orders/:id
@@ -61,6 +62,21 @@ router.get("/:id", async (req, res, next) => {
         next(error);
     }
 });
+
+
+router.get("/", async (req, res, next) => {
+    try {
+        const orders = await Order.findAll();
+        if (orders.length === 0) {
+            return res.status(200).json({ orders: [] });
+        }
+        res.status(200).json({
+            orders: orders => orders.map(order => order.toJSON()),
+        })
+    } catch (error) {
+        next(error);
+    }
+})
 
 /* --------------------------------------------------------------------------
    TODO: Add the rest of the CRUD routes
