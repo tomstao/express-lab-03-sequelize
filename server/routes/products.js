@@ -12,6 +12,9 @@ router.get("/", async (_req, res, next) => {
        1. Fetch all products
        2. Return JSON array
     */
+
+
+
   } catch (error) {
     next(error);
   }

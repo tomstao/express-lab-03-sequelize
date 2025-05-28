@@ -19,6 +19,27 @@ router.get("/:id", async (req, res, next) => {
     // let total = 0;
     // ...calculate total here...
     // res.json({ ...order.toJSON(), total });
+    const orderId = req.params.id;
+
+    const order = await Order.findByPk(orderId,
+        {
+          include: [
+            {
+              model: Product, Customer
+            }
+          ]
+        }
+        )
+    if (!order) {
+      res.status(404).end(
+          {
+            message: "Order Not Found",
+          }
+      );
+    }
+
+
+
   } catch (error) {
     next(error);
   }
